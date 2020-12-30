@@ -3,7 +3,6 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { Connection } from 'typeorm';
-import { ArticleModule } from './article/article.module';
 import { AuthModule } from './auth/auth.module';
 import { GoodsModule } from './goods/goods.module';
 import { LoggerMiddleware } from './logger.middleware';
@@ -29,9 +28,7 @@ import { UserModule } from './user/user.module';
       synchronize: true,
     }),
     AuthModule,
-    ArticleModule,
     UserModule,
-    ArticleModule,
     GoodsModule,
     OrderModule,
   ],

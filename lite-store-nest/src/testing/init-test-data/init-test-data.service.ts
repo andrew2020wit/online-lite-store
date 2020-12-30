@@ -1,12 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ArticleEntity, ArticleTypes } from 'src/article/entity/article.entity';
 import { getPassWordHash } from 'src/auth/utils/getPassWordHash';
 import { StatusMessageDto } from 'src/global-interface/status-message.dto';
 import { UserEntity, UserRole } from 'src/user/user.entity';
 import { getConnection, Repository } from 'typeorm';
 import { UserService } from './../../user/user.service';
-import { lorem10, lorem200, lorem50 } from './lorem-test-const';
 
 @Injectable()
 export class InitTestDataService {
@@ -34,33 +32,6 @@ export class InitTestDataService {
         userId: resultId,
         role: UserRole.manager,
       });
-
-      const author = await this.userService.getById(resultId);
-
-      // create articles
-      const connection = getConnection();
-      for (let m = 1; m <= 200; m++) {
-        const newArt = new ArticleEntity();
-        newArt.author = author;
-        newArt.title =
-          'News N' + m + ' ' + lorem50 + ' from: ' + author.fullName;
-        newArt.articleType = ArticleTypes.news;
-        newArt.description = 'description N' + m + ' ' + lorem200;
-
-        newArt.text = 'text N' + m + ' ' + lorem200;
-
-        await connection.manager.save(newArt);
-      }
-      for (let m = 1; m <= 200; m++) {
-        const newArt = new ArticleEntity();
-        newArt.author = author;
-        newArt.title = 'Review N' + m + ' from: ' + author.fullName;
-        newArt.articleType = ArticleTypes.review;
-        newArt.description = 'description N' + m + ' ' + lorem10;
-        newArt.text = 'text N' + m + ' ' + lorem200;
-
-        await connection.manager.save(newArt);
-      }
     }
     const password2 = await getPassWordHash('12');
     // create admins
