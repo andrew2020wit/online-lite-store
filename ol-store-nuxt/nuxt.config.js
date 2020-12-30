@@ -1,4 +1,4 @@
-import colors from 'vuetify/es5/util/colors'
+import colors from 'vuetify/es5/util/colors';
 
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -36,6 +36,7 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
+    '@nuxtjs/auth-next',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
@@ -65,4 +66,31 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
-}
+
+  auth: {
+    strategies: {
+      local: {
+        token: {
+          property: 'access_token',
+          // required: true,
+          // type: 'Bearer'
+        },
+        user: {
+          property: 'fullName',
+          // autoFetch: true
+        },
+        endpoints: {
+          login: {
+            url: 'http://localhost:3001/api/jwt-auth/get-token',
+            method: 'post',
+          },
+          logout: false,
+          user: {
+            url: 'http://localhost:3001/api/jwt-auth/get-user-profile',
+            method: 'get',
+          },
+        },
+      },
+    },
+  },
+};

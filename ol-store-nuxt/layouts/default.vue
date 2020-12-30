@@ -2,6 +2,8 @@
   <v-app>
     <v-app-bar app flat>
       {{ title }}
+
+      <AppUser />
     </v-app-bar>
 
     <v-main>
