@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { AuthService } from './auth.service';
+import { AuthService, UserProfile } from './auth.service';
 import { JWTokenDTO } from './dto/token-object.dto';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { LocalAuthGuard } from './guards/local-auth.guard';
@@ -13,7 +13,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @UseGuards(LocalAuthGuard)
-  @Post('get-token-obj')
+  @Post('get-token')
   async login(@Request() req: RequestWithJwtUserDto): Promise<JWTokenDTO> {
     return this.authService.getTokenObject(req.user);
   }
@@ -24,5 +24,15 @@ export class AuthController {
     @Request() req: RequestWithJwtUserExtDto,
   ): Promise<JWTokenDTO> {
     return await this.authService.updateToken(req.user);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('get-user-profile')
+  async getUserProfile(
+    @Request() req: RequestWithJwtUserExtDto,
+  ): Promise<UserProfile> {
+    const resp = await this.authService.getUserProfile(req.user.sub);
+    // console.log('resp ', resp);
+    return resp;
   }
 }
