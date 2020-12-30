@@ -1,0 +1,75 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type ArticleEntity {
+  author: UserEntity!
+  createdOn: DateTime!
+
+  """Short article description"""
+  description: String!
+  id: String!
+  isActive: Boolean!
+  text: String!
+
+  """Article title"""
+  title: String!
+  updatedOn: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type GoodsEntity {
+  """photoUrl"""
+  bigPhotoUrl: String!
+  createdOn: DateTime!
+
+  """Goods description"""
+  description: String!
+  id: String!
+  isActive: Boolean!
+
+  """Goods name"""
+  name: String!
+
+  """price"""
+  price: Float!
+
+  """photoUrl"""
+  smallPhotoUrl: String!
+  updatedOn: DateTime!
+}
+
+type Mutation {
+  createArticle(description: String!, text: String!, title: String!): String!
+  createGoods(bigPhotoUrl: String!, description: String!, name: String!, price: Int = null, smallPhotoUrl: String!): String!
+  disActiveArticle(articleId: String!): String!
+  disActiveGoods(goodsId: String!): String!
+  editArticle(articleId: String!, description: String!, text: String!, title: String!): String!
+  editGoods(bigPhotoUrl: String!, description: String!, id: String!, name: String!, price: Int = null, smallPhotoUrl: String!): String!
+}
+
+type Query {
+  allArticles(createOnCursor: DateTime = "2020-11-30T13:58:48.667Z", sample: String = "", take: Int = 3): [ArticleEntity!]!
+  author(id: String!): UserEntity!
+  getArticle(artId: String!): ArticleEntity!
+  getGoods(createOnCursor: DateTime = "2020-11-30T13:58:48.718Z", sample: String = "", take: Int = 3): [GoodsEntity!]!
+  getOneGoods(id: String!): GoodsEntity!
+  usersCount: usersCount!
+}
+
+type UserEntity {
+  createdOn: DateTime!
+  fullName: String!
+  id: String!
+  isActive: Boolean!
+  role: String!
+  updatedOn: DateTime!
+}
+
+type usersCount {
+  count: Int!
+}
