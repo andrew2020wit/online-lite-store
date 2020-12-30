@@ -14,12 +14,14 @@
   </v-app>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue';
+import { priceData } from '@/data/price';
+export default Vue.extend({
   data() {
     return {
       title: 'LiteStore',
-    }
+    };
   },
-}
+});
 </script>

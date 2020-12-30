@@ -13,5 +13,5 @@ module.exports = {
   ],
   plugins: ['prettier'],
   // add your custom rules here
-  rules: { 'no-console': 0 },
-}
+  rules: { 'no-console': 0, semi: 'always' },
+};
