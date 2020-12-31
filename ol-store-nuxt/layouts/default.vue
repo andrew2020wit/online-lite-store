@@ -21,6 +21,8 @@
     <v-footer app>
       <v-container>
         <v-row>
+          <v-btn color="primary" plain to="/all-goods"> All Goods </v-btn>
+          <v-spacer />
           <v-btn color="primary" plain to="/contacts"> Contacts </v-btn>
           <v-spacer />
           <v-btn color="primary" plain to="/about"> About </v-btn>
