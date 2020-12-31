@@ -3,9 +3,10 @@
     <v-app-bar app flat>
       <v-container>
         <v-row>
-          <NuxtLink to="/" exact-active-class="active-link">
+          <v-btn color="primary" plain to="/">
             <v-toolbar-title v-text="title" />
-          </NuxtLink>
+          </v-btn>
+
           <v-spacer />
           <AppUser /> </v-row
       ></v-container>

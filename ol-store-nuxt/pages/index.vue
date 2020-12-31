@@ -1,13 +1,26 @@
 <template>
   <div>
     <h1>HomePage: shopwindow</h1>
-    <GoodsHeaderCard
-      v-for="goods1 in goodsExt"
-      :key="goods1.id"
-      :name="goods1.name"
-      :goodsId="goods1.id"
-      :price="goods1.price"
-    />
+
+    <v-container>
+      <v-row dense>
+        <v-col
+          v-for="goods1 in goodsExt"
+          :key="goods1.id"
+          cols="12"
+          xl="2"
+          lg="3"
+          md="4"
+          sm="6"
+        >
+          <GoodsHeaderCard
+            :name="goods1.name"
+            :goodsId="goods1.id"
+            :price="goods1.price"
+          />
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
@@ -22,6 +35,7 @@ export default Vue.extend({
       .only(['name', 'price', 'slug'])
       .where({ isActive: true })
       .sortBy('priority', 'desc')
+      .limit(40)
       .fetch();
     // console.log('goods', goods)
     const goodsExt: GoodsExt[] = [];

@@ -1,5 +1,5 @@
 <template>
-  <v-card :loading="loading" class="mx-auto my-12" max-width="374">
+  <v-card :loading="loading">
     <template slot="progress">
       <v-progress-linear
         color="deep-purple"
@@ -9,7 +9,7 @@
     </template>
 
     <v-img
-      height="250"
+      height="200"
       src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
     ></v-img>
 
@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 export default Vue.extend({
   props: {
     goodsId: { type: String, required: true },
@@ -32,10 +32,10 @@ export default Vue.extend({
   data() {
     return {
       loading: false,
-    }
+    };
   },
   methods: {
     buy() {},
   },
-})
+});
 </script>
