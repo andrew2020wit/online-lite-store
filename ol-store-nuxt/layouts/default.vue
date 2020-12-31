@@ -1,8 +1,10 @@
 <template>
   <v-app>
     <v-app-bar app flat>
-      {{ title }}
-
+      <NuxtLink to="/" exact-active-class="active-link">
+        <v-toolbar-title v-text="title" />
+      </NuxtLink>
+      <v-spacer />
       <AppUser />
     </v-app-bar>
 
