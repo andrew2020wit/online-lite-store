@@ -1,11 +1,14 @@
 <template>
   <v-app>
     <v-app-bar app flat>
-      <NuxtLink to="/" exact-active-class="active-link">
-        <v-toolbar-title v-text="title" />
-      </NuxtLink>
-      <v-spacer />
-      <AppUser />
+      <v-container>
+        <v-row>
+          <NuxtLink to="/" exact-active-class="active-link">
+            <v-toolbar-title v-text="title" />
+          </NuxtLink>
+          <v-spacer />
+          <AppUser /> </v-row
+      ></v-container>
     </v-app-bar>
 
     <v-main>
@@ -14,7 +17,9 @@
       </v-container>
     </v-main>
 
-    <v-footer app> Footer </v-footer>
+    <v-footer app>
+      <v-container> <v-row> Footer</v-row></v-container>
+    </v-footer>
   </v-app>
 </template>
 
