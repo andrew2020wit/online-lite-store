@@ -10,6 +10,7 @@ import { OrderModule } from './order/order.module';
 import { InitTestDataService } from './testing/init-test-data/init-test-data.service';
 import { TestController } from './testing/test.controller';
 import { UserModule } from './user/user.module';
+import { MdGeneratorModule } from './md-generator/md-generator.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { UserModule } from './user/user.module';
     UserModule,
     GoodsModule,
     OrderModule,
+    MdGeneratorModule,
   ],
   providers: [InitTestDataService],
   controllers: [TestController],
