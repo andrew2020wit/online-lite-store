@@ -81,12 +81,12 @@ export default {
         },
         endpoints: {
           login: {
-            url: 'http://localhost:3001/api/jwt-auth/get-token',
+            url: 'http://localhost:3001/api/auth/get-token',
             method: 'post',
           },
           logout: false,
           user: {
-            url: 'http://localhost:3001/api/jwt-auth/get-user-profile',
+            url: 'http://localhost:3001/api/auth/get-user-profile',
             method: 'get',
           },
         },

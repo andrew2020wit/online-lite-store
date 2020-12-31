@@ -12,13 +12,19 @@
     </v-app-bar>
 
     <v-main>
-      <v-container fluid>
+      <v-container>
         <nuxt />
       </v-container>
     </v-main>
 
     <v-footer app>
-      <v-container> <v-row> Footer</v-row></v-container>
+      <v-container>
+        <v-row>
+          <v-btn color="primary" plain to="/contacts"> Contacts </v-btn>
+          <v-spacer />
+          <v-btn color="primary" plain to="/about"> About </v-btn>
+        </v-row></v-container
+      >
     </v-footer>
   </v-app>
 </template>
