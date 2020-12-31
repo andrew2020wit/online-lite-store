@@ -16,7 +16,8 @@
     <v-card-title>${{ price }}: {{ name }}</v-card-title>
 
     <v-card-actions>
-      <v-btn color="deep-purple lighten-2" text @click="buy"> Buy </v-btn>
+      <v-btn color="primary" text @click="buy"> Buy </v-btn> <v-spacer />
+      <v-btn color="primary" text :to="`/goods/` + goodsId"> Details </v-btn>
     </v-card-actions>
   </v-card>
 </template>
