@@ -4,10 +4,9 @@
       <v-col cols="12" md="3">
         <v-form v-model="formValid" @submit.prevent="userLogin">
           <v-text-field
-            v-model="login"
-            :rules="loginRules"
-            :counter="20"
-            label="Login"
+            v-model="phone"
+            :rules="phoneRules"
+            label="Phone number"
             required
           ></v-text-field>
 
@@ -30,14 +29,14 @@
 </template>
 
 <script>
+import { patternPhoneNumber } from '@/components/phone-number-utils';
 export default {
   data: () => ({
     formValid: false,
-    login: '',
-    loginRules: [
-      (v) => !!v || 'Login is required',
-      (v) =>
-        (v.length >= 2 && v.length <= 20) || 'Login must be 2-20 characters',
+    phone: '',
+    phoneRules: [
+      (v) => !!v || 'Phone is required',
+      (v) => patternPhoneNumber.test(v) || 'Phone must be like 38-097-123-1234',
     ],
     password: '',
     passwordRules: [
@@ -49,12 +48,10 @@ export default {
   methods: {
     async userLogin() {
       try {
-        console.log('this.$auth', this.$auth);
+        const login = this.phone.replace(/\D/gi, '');
         const response = await this.$auth.loginWith('local', {
-          data: { login: this.login, password: this.password },
+          data: { login, password: this.password },
         });
-        console.log(response);
-        console.log('this.$auth', this.$auth);
       } catch (err) {
         console.log(err);
       }
