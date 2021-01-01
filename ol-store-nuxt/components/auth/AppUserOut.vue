@@ -1,8 +1,6 @@
 <template>
   <span>
-    <NuxtLink to="/login" exact-active-class="active-link">Login</NuxtLink> |
-    <NuxtLink to="/register" exact-active-class="active-link"
-      >Register</NuxtLink
-    >
+    <v-btn color="primary" plain to="/login">Login</v-btn>
+    <v-btn color="primary" plain to="/register">Register</v-btn>
   </span>
 </template>
