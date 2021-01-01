@@ -3,14 +3,18 @@
     <h1>{{ goods.name }}</h1>
     <v-container>
       <v-row
-        ><v-col cols="12" xl="4" lg="4" md="6" sm="8"
-          ><nuxt-content :document="goods" /></v-col
-        ><v-col cols="12" xl="2" lg="2" md="2" sm="2"
+        ><v-col cols="12" xl="2" lg="3" md="4" sm="6">
+          <v-img
+            height="200"
+            src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+          ></v-img> </v-col
+        ><v-col cols="12" xl="2" lg="3" md="4" sm="6"
           ><BuyItemWidget
             :goodsId="goods.slug"
             :name="goods.name"
             :price="goods.price" /></v-col
       ></v-row>
+      <v-row><nuxt-content :document="goods" /></v-row>
     </v-container>
   </div>
 </template>
