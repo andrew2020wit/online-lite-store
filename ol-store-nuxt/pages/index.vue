@@ -28,6 +28,7 @@
 import Vue from 'vue';
 import { priceData } from '~/data/price';
 import { GoodsExt } from '~/data/price.class';
+import { countOfFirstFetchGoods } from '~/data/const';
 export default Vue.extend({
   components: {},
   async asyncData({ $content }) {
@@ -35,7 +36,7 @@ export default Vue.extend({
       .only(['name', 'price', 'slug'])
       .where({ isActive: true })
       .sortBy('priority', 'desc')
-      .limit(40)
+      .limit(countOfFirstFetchGoods)
       .fetch();
     // console.log('goods', goods)
     const goodsExt: GoodsExt[] = [];
