@@ -8,11 +8,15 @@
           </v-btn>
 
           <v-spacer />
+          <CartTopButton />
           <AppUser /> </v-row
       ></v-container>
     </v-app-bar>
 
     <v-main>
+      <v-container>
+        <CartWidget />
+      </v-container>
       <v-container>
         <nuxt />
       </v-container>
