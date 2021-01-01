@@ -1,6 +1,11 @@
 <template>
   <div>
-    <h1>HomePage: shopwindow</h1>
+    <!-- <h1>HomePage: shopwindow</h1> -->
+    <v-text-field
+      v-model="searchPattern"
+      :rules="searchPatternRules"
+      label="searchPattern"
+    ></v-text-field>
 
     <v-container>
       <v-row dense>
@@ -62,7 +67,14 @@ export default Vue.extend({
     return { goodsExt };
   },
   data() {
-    return {};
+    return {
+      searchPattern: '',
+      searchPatternRules: [
+        (v: string) =>
+          v.length > 2 || v.length == 0 || 'Must be more than 2 characters',
+        (v: string) => v.length < 30 || 'Must be less than 30 characters',
+      ],
+    };
   },
 });
 </script>

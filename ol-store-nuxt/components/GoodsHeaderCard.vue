@@ -1,5 +1,5 @@
 <template>
-  <v-card :loading="loading">
+  <v-card :loading="loading" :to="`/goods/` + goodsId">
     <template slot="progress">
       <v-progress-linear
         color="deep-purple"
@@ -15,10 +15,9 @@
 
     <v-card-title>${{ price }}: {{ name }}</v-card-title>
 
-    <v-card-actions>
-      <v-btn color="primary" text @click="buy"> Buy </v-btn> <v-spacer />
+    <!-- <v-card-actions>
       <v-btn color="primary" text :to="`/goods/` + goodsId"> Details </v-btn>
-    </v-card-actions>
+    </v-card-actions> -->
   </v-card>
 </template>
 
@@ -34,9 +33,6 @@ export default Vue.extend({
     return {
       loading: false,
     };
-  },
-  methods: {
-    buy() {},
   },
 });
 </script>
