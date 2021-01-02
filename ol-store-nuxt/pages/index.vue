@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{ searchPattern }}
     <v-container>
       <v-row
         ><v-col cols="12" xl="2" lg="3" md="4" sm="6">
@@ -76,10 +75,6 @@ export default Vue.extend({
         .limit(this.takeGoods)
         .search('name', this.searchPattern)
         .fetch();
-
-      console.log('this.searchPattern', this.searchPattern);
-
-      console.log('goodsContent', goodsContent);
 
       goodsContent.forEach((goods1: any) => {
         const newGoodsExt1: GoodsExt = {

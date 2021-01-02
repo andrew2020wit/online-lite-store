@@ -11,9 +11,21 @@
             <th class="text-left">ItemSum</th>
           </tr>
         </thead>
+        <tfoot>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            Total: <strong> ${{ sum }} </strong>
+          </td>
+        </tfoot>
         <tbody>
           <tr v-for="item in cartItems" :key="item.id">
-            <td>{{ item.name }}</td>
+            <td>
+              <v-btn color="primary" plain :to="`/goods/` + item.id">
+                {{ item.name }}
+              </v-btn>
+            </td>
             <td>{{ item.count }}</td>
             <td>{{ item.price }}</td>
             <td>{{ item.price * item.count }}</td>
@@ -24,10 +36,6 @@
     <v-card-text v-if="!items">
       <div>Cart is empty. Add here something!</div>
     </v-card-text>
-
-    <v-divider class="mx-4"></v-divider>
-
-    <div>Total: ${{ sum }}</div>
     <v-divider class="mx-4"></v-divider>
     <v-card-actions>
       <v-btn color="error" plain @click="clearCart"> Clear Cart </v-btn>

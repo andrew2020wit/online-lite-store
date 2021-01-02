@@ -2,7 +2,8 @@
   <div>
     <v-btn color="primary" :outlined="cartIsOpen" plain @click="showCart">
       <v-icon v-if="!sum">mdi-cart-outline</v-icon>
-      <v-icon v-if="sum">mdi-cart</v-icon> Cart
+      <v-icon v-if="sum">mdi-cart</v-icon>Cart
+      <strong v-if="sum"> : {{ items }}/${{ sum }}</strong>
     </v-btn>
   </div>
 </template>

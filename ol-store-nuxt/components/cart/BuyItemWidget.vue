@@ -9,10 +9,10 @@
         type="number"
         required
       ></v-text-field>
-      <v-btn color="primary" type="submit" :disabled="!formValid"
-        >Buy</v-btn
-      ></v-form
-    >
+      <v-btn color="primary" type="submit" :disabled="count <= 0">Buy</v-btn>
+      <v-btn color="primary" @click="add"> +1 </v-btn>
+      <v-btn color="error" :disabled="!count" @click="clear">Clear</v-btn>
+    </v-form>
   </div>
 </template>
 
@@ -30,7 +30,6 @@ export default Vue.extend({
       formValid: false,
       count: 1,
       countRules: [
-        (v: number) => !!v || 'Password is required',
         (v: number) => v >= 0 || 'It can`t less then 0',
         (v: number) => v <= 1000 || 'You can`t take that much!',
       ],
@@ -38,6 +37,9 @@ export default Vue.extend({
   },
   methods: {
     submit() {
+      if (!this.count) {
+        this.count = 0;
+      }
       const newItem = new CartItem(
         this.goodsId,
         this.name,
@@ -45,6 +47,13 @@ export default Vue.extend({
         this.price
       );
       this.$store.commit('cart/setCartItem', newItem);
+    },
+    add() {
+      this.count++;
+    },
+    clear() {
+      this.count = 0;
+      this.submit();
     },
   },
 });
