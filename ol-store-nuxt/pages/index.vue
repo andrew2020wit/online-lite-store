@@ -1,5 +1,6 @@
 <template>
   <div>
+    {{ isIntersecting }}
     <v-text-field
       v-model="searchPattern"
       :rules="searchPatternRules"
@@ -25,6 +26,9 @@
         </v-col>
       </v-row>
     </v-container>
+    <!-- bottom goods list -->
+    <v-divider v-intersect="onIntersect"></v-divider>
+    {{ isIntersecting }}
   </div>
 </template>
 
@@ -45,15 +49,22 @@ export default Vue.extend({
       goodsSkip: 0,
       takeGoods: 40,
       goodsFinished: false,
+      isLoadding: false,
+      isIntersecting: true,
     };
   },
 
   methods: {
     async fetchGoods() {
+      if (this.goodsFinished || this.isLoadding) {
+        return;
+      }
+      this.isLoadding = true;
       const goodsContent = await this.$content('goods')
         .only(['name', 'price', 'slug'])
         .where({ isActive: true })
         .sortBy('priority', 'desc')
+        .skip(this.goodsSkip)
         .limit(this.takeGoods)
         .fetch();
 
@@ -65,6 +76,20 @@ export default Vue.extend({
         };
         this.goodsArr.push(newGoodsExt1);
       });
+
+      if (goodsContent.length < this.takeGoods) {
+        this.goodsFinished = true;
+      }
+      this.goodsSkip += this.takeGoods;
+      this.isLoadding = false;
+    },
+    onIntersect(entries: any, observer: any) {
+      // More information about these options
+      // is located here: https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+      this.isIntersecting = entries[0].isIntersecting;
+      if (this.isIntersecting) {
+        this.fetchGoods();
+      }
     },
   },
   mounted() {
