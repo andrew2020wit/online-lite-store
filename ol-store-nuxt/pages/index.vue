@@ -1,13 +1,22 @@
 <template>
   <div>
-    {{ isIntersecting }}
-    <v-text-field
-      v-model="searchPattern"
-      :rules="searchPatternRules"
-      label="searchPattern"
-    ></v-text-field>
-
+    {{ searchPattern }}
     <v-container>
+      <v-row
+        ><v-col cols="12" xl="2" lg="3" md="4" sm="6">
+          <v-text-field
+            v-model.trim="searchPattern"
+            type="search"
+            autocomplete="off"
+            :rules="searchPatternRules"
+            outlined
+            label="searchPattern"
+          ></v-text-field>
+        </v-col>
+        <v-col cols="12" xl="2" lg="3" md="4" sm="6"
+          ><v-btn color="primary" @click="searchGoods"> Search </v-btn>
+        </v-col>
+      </v-row>
       <v-row dense>
         <v-col
           v-for="goods1 in goodsArr"
@@ -28,7 +37,6 @@
     </v-container>
     <!-- bottom goods list -->
     <v-divider v-intersect="onIntersect"></v-divider>
-    {{ isIntersecting }}
   </div>
 </template>
 
@@ -47,7 +55,7 @@ export default Vue.extend({
       ],
       goodsArr: [] as GoodsExt[],
       goodsSkip: 0,
-      takeGoods: 40,
+      takeGoods: 48,
       goodsFinished: false,
       isLoadding: false,
       isIntersecting: true,
@@ -66,7 +74,12 @@ export default Vue.extend({
         .sortBy('priority', 'desc')
         .skip(this.goodsSkip)
         .limit(this.takeGoods)
+        .search('name', this.searchPattern)
         .fetch();
+
+      console.log('this.searchPattern', this.searchPattern);
+
+      console.log('goodsContent', goodsContent);
 
       goodsContent.forEach((goods1: any) => {
         const newGoodsExt1: GoodsExt = {
@@ -83,9 +96,17 @@ export default Vue.extend({
       this.goodsSkip += this.takeGoods;
       this.isLoadding = false;
     },
-    onIntersect(entries: any, observer: any) {
-      // More information about these options
-      // is located here: https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+    reFetchGoogs() {
+      this.goodsSkip = 0;
+      this.goodsFinished = false;
+      this.goodsArr = [];
+      this.isLoadding = false;
+      this.fetchGoods();
+    },
+    searchGoods() {
+      this.reFetchGoogs();
+    },
+    onIntersect(entries: any) {
       this.isIntersecting = entries[0].isIntersecting;
       if (this.isIntersecting) {
         this.fetchGoods();
