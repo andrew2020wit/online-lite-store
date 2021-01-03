@@ -23,13 +23,27 @@
           <v-text-field
             v-model="fullName"
             :rules="fullNameRules"
-            :counter="20"
             label="fullName"
             required
           ></v-text-field>
 
+          <v-text-field
+            v-model.trim="email"
+            :rules="emailRules"
+            label="email"
+            type="email"
+          ></v-text-field>
+
+          <v-textarea
+            outlined
+            label="defaultDeliverAddress"
+            v-model="defaultDeliverAddress"
+            :rules="defaultDeliverAddressRules"
+            required
+          ></v-textarea>
+
           <v-btn color="primary" type="submit" :disabled="!formValid"
-            >Submit</v-btn
+            >Register</v-btn
           >
         </v-form>
       </v-col>
@@ -59,6 +73,21 @@ export default {
       (v) => !!v || 'fullName is required',
       (v) =>
         (v.length >= 2 && v.length <= 20) || 'fullName must be 2-20 characters',
+    ],
+    email: '',
+    emailRules: [
+      (v) => /\S+@\S+\.\S+/.test(v) || v == '' || 'email must be like xx@yy.zz',
+      (v) =>
+        (v.length >= 2 && v.length <= 20) ||
+        v == '' ||
+        'email must be 2-20 characters',
+    ],
+    defaultDeliverAddress: '',
+    defaultDeliverAddressRules: [
+      (v) => !!v || 'defaultDeliverAddress is required',
+      (v) =>
+        (v.length >= 5 && v.length <= 500) ||
+        'defaultDeliverAddress must be 5-500 characters',
     ],
   }),
   methods: {

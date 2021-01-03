@@ -20,7 +20,7 @@
           ></v-text-field>
 
           <v-btn color="primary" type="submit" :disabled="!formValid"
-            >Submit</v-btn
+            >Login</v-btn
           >
         </v-form>
       </v-col>
