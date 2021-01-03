@@ -13,7 +13,7 @@
       src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
     ></v-img>
 
-    <v-card-title>${{ price }}: {{ name }}</v-card-title>
+    <v-card-title>${{ price }}: {{ shortName }}</v-card-title>
   </v-card>
 </template>
 
@@ -26,6 +26,16 @@ export default Vue.extend({
     goodsId: { type: String, required: true },
     name: { type: String, required: true },
     price: { type: Number, default: null },
+  },
+  computed: {
+    shortName() {
+      const maxLength = 35;
+      if ((this.name as string).length > maxLength) {
+        return this.name.slice(0, maxLength) + '...';
+      } else {
+        return this.name;
+      }
+    },
   },
   data() {
     return {
