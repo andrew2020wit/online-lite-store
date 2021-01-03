@@ -13,7 +13,7 @@
       src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
     ></v-img>
 
-    <v-card-title>${{ price }}: {{ shortName }}</v-card-title>
+    <v-card-title>${{ price }}: {{ name | shortName }}</v-card-title>
   </v-card>
 </template>
 
@@ -21,22 +21,15 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { shortNameMixin } from './shortNameMixin.vue';
 export default Vue.extend({
   props: {
     goodsId: { type: String, required: true },
     name: { type: String, required: true },
     price: { type: Number, default: null },
   },
-  computed: {
-    shortName() {
-      const maxLength = 35;
-      if ((this.name as string).length > maxLength) {
-        return this.name.slice(0, maxLength) + '...';
-      } else {
-        return this.name;
-      }
-    },
-  },
+  mixins: [shortNameMixin],
+  computed: {},
   data() {
     return {
       loading: false,

@@ -23,7 +23,7 @@
           <tr v-for="item in cartItems" :key="item.id">
             <td>
               <v-btn color="primary" plain :to="`/goods/` + item.id">
-                {{ item.name }}
+                {{ item.name | shortName }}
               </v-btn>
             </td>
             <td>{{ item.count }}</td>
@@ -52,8 +52,10 @@
 <script lang="ts">
 import Vue from 'vue';
 import { mapState } from 'vuex';
+import { shortNameMixin } from '../shortNameMixin.vue';
 
 export default Vue.extend({
+  mixins: [shortNameMixin],
   computed: mapState('cart', ['cartItems', 'cartIsOpen', 'sum', 'items']),
   methods: {
     hideCart() {
