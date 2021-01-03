@@ -15,6 +15,15 @@
         <v-col cols="12" xl="2" lg="3" md="4" sm="6"
           ><v-btn color="primary" @click="searchGoods"> Search </v-btn>
         </v-col>
+        <v-col cols="12" xl="2" lg="3" md="4" sm="6">
+          <v-select
+            :items="categories"
+            v-model="selectedCategory"
+            label="Category"
+            @change="selectCategory"
+            outlined
+          ></v-select>
+        </v-col>
       </v-row>
       <v-row dense>
         <v-col
@@ -41,6 +50,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { goodsCategories } from '~/data/const';
 import { GoodsExt } from '~/data/price.class';
 
 export default Vue.extend({
@@ -58,6 +68,8 @@ export default Vue.extend({
       goodsFinished: false,
       isLoadding: false,
       isIntersecting: true,
+      categories: goodsCategories,
+      selectedCategory: '',
     };
   },
 
@@ -67,9 +79,14 @@ export default Vue.extend({
         return;
       }
       this.isLoadding = true;
+      const whereQuery: any = {};
+      whereQuery.isActive = true;
+      if (this.selectedCategory != 'all' && this.selectedCategory != '') {
+        whereQuery.category = this.selectedCategory;
+      }
       const goodsContent = await this.$content('goods')
         .only(['name', 'price', 'slug'])
-        .where({ isActive: true })
+        .where(whereQuery)
         .sortBy('priority', 'desc')
         .skip(this.goodsSkip)
         .limit(this.takeGoods)
@@ -106,6 +123,11 @@ export default Vue.extend({
       if (this.isIntersecting) {
         this.fetchGoods();
       }
+    },
+    selectCategory() {
+      console.log('this.selectedCategory', this.selectedCategory);
+
+      this.reFetchGoogs();
     },
   },
   mounted() {
