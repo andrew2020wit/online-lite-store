@@ -14,6 +14,7 @@
         </v-col>
         <v-col cols="12" xl="2" lg="3" md="4" sm="6"
           ><v-btn color="primary" @click="searchGoods"> Search </v-btn>
+          <v-btn color="primary" @click="clearSearch"> Clear </v-btn>
         </v-col>
         <v-col cols="12" xl="2" lg="3" md="4" sm="6">
           <v-select
@@ -127,6 +128,11 @@ export default Vue.extend({
     selectCategory() {
       console.log('this.selectedCategory', this.selectedCategory);
 
+      this.reFetchGoogs();
+    },
+    clearSearch() {
+      this.searchPattern = '';
+      this.selectedCategory = '';
       this.reFetchGoogs();
     },
   },
