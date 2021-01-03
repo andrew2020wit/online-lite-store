@@ -13,7 +13,10 @@
             :goodsId="goods.slug"
             :name="goods.name"
             :price="goods.price" /></v-col
-      ></v-row>
+        ><v-col cols="12" xl="2" lg="3" md="4" sm="6"
+          >Category: <strong> {{ goods.category }} </strong>
+        </v-col></v-row
+      >
       <v-row><nuxt-content :document="goods" /></v-row>
     </v-container>
   </div>
