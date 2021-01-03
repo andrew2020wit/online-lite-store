@@ -42,7 +42,9 @@
       <v-spacer />
       <v-btn color="primary" plain @click="hideCart"> Hide Cart </v-btn
       ><v-spacer />
-      <v-btn color="primary" plain> Buy all </v-btn>
+      <v-btn color="primary" plain to="/order" :disabled="!items">
+        Order
+      </v-btn>
     </v-card-actions>
   </v-card>
 </template>

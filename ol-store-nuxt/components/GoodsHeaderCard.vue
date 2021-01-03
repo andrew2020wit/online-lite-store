@@ -1,5 +1,5 @@
 <template>
-  <v-card :loading="loading" :to="`/goods/` + goodsId">
+  <v-card :loading="loading" height="20rem" :to="`/goods/` + goodsId">
     <template slot="progress">
       <v-progress-linear
         color="deep-purple"
@@ -14,12 +14,10 @@
     ></v-img>
 
     <v-card-title>${{ price }}: {{ name }}</v-card-title>
-
-    <!-- <v-card-actions>
-      <v-btn color="primary" text :to="`/goods/` + goodsId"> Details </v-btn>
-    </v-card-actions> -->
   </v-card>
 </template>
+
+<style scoped></style>
 
 <script lang="ts">
 import Vue from 'vue';
