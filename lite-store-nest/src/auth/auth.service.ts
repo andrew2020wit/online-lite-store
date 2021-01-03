@@ -12,6 +12,9 @@ export class UserProfile {
   id: string;
   fullName: string;
   role: string;
+  defaultDeliverAddress: string;
+  phone: string;
+  email: string;
 }
 
 @Injectable()
@@ -76,6 +79,9 @@ export class AuthService {
       id: user.id,
       fullName: user.fullName,
       role: user.role,
+      defaultDeliverAddress: user.defaultDeliverAddress,
+      phone: user.phone,
+      email: user.email,
     };
 
     return userProfile;
