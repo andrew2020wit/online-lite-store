@@ -21,6 +21,14 @@
           ></v-text-field>
 
           <v-text-field
+            v-model="password2"
+            :rules="password2Rules"
+            label="Password2"
+            type="password"
+            required
+          ></v-text-field>
+
+          <v-text-field
             v-model="fullName"
             :rules="fullNameRules"
             label="fullName"
@@ -63,11 +71,13 @@ export default {
       (v) => patternPhoneNumber.test(v) || 'Phone must be like 38-097-123-1234',
     ],
     password: '',
+
     passwordRules: [
       (v) => !!v || 'Password is required',
       (v) =>
         (v.length >= 2 && v.length <= 30) || 'Password must be 2-30 characters',
     ],
+    password2: '',
     fullName: '',
     fullNameRules: [
       (v) => !!v || 'fullName is required',
@@ -100,6 +110,8 @@ export default {
             login,
             password: this.password,
             fullName: this.fullName,
+            defaultDeliverAddress: this.defaultDeliverAddressRules,
+            email: this.email,
           })
           .then((response) => {
             console.log(response);
@@ -110,6 +122,16 @@ export default {
       } catch (err) {
         console.log(err);
       }
+    },
+  },
+
+  computed: {
+    password2Rules() {
+      let r = this.password2 == this.password;
+      if (!r) {
+        r = 'password != password2';
+      }
+      return [r];
     },
   },
 };
