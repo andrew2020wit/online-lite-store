@@ -22,9 +22,9 @@
         <tbody>
           <tr v-for="item in cartItems" :key="item.id">
             <td>
-              <v-btn color="primary" plain :to="`/goods/` + item.id">
-                {{ item.name | shortName }}
-              </v-btn>
+              <router-link :to="`/goods/` + item.id">
+                {{ item.name }}
+              </router-link>
             </td>
             <td>{{ item.count }}</td>
             <td>{{ item.price }}</td>
@@ -49,13 +49,12 @@
   </v-card>
 </template>
 
+<style scoped></style>
+
 <script lang="ts">
 import Vue from 'vue';
 import { mapState } from 'vuex';
-import { shortNameMixin } from '../shortNameMixin.vue';
-
 export default Vue.extend({
-  mixins: [shortNameMixin],
   computed: mapState('cart', ['cartItems', 'cartIsOpen', 'sum', 'items']),
   methods: {
     hideCart() {

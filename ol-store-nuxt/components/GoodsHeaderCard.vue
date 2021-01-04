@@ -1,5 +1,5 @@
 <template>
-  <v-card :loading="loading" height="20rem" :to="`/goods/` + goodsId">
+  <v-card :loading="loading" :to="`/goods/` + goodsId">
     <template slot="progress">
       <v-progress-linear
         color="deep-purple"
@@ -13,22 +13,27 @@
       src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
     ></v-img>
 
-    <v-card-title>${{ price }}: {{ name | shortName }}</v-card-title>
+    <v-card-title>
+      <div class="block1">${{ price }}: {{ name }}</div></v-card-title
+    >
   </v-card>
 </template>
 
-<style scoped></style>
+<style scoped>
+.block1 {
+  height: 4rem;
+  overflow: hidden;
+}
+</style>
 
 <script lang="ts">
 import Vue from 'vue';
-import { shortNameMixin } from './shortNameMixin.vue';
 export default Vue.extend({
   props: {
     goodsId: { type: String, required: true },
     name: { type: String, required: true },
     price: { type: Number, default: null },
   },
-  mixins: [shortNameMixin],
   computed: {},
   data() {
     return {
