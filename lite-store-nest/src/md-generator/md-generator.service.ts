@@ -1,4 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { GoodsEntity } from 'src/goods/entity/goods.entity';
+import { Repository } from 'typeorm';
 import {
   mdTemplate1,
   mdTemplate2,
@@ -9,18 +12,25 @@ const fs = require('fs');
 
 @Injectable()
 export class MdGeneratorService {
-  create() {
+  constructor(
+    @InjectRepository(GoodsEntity)
+    private readonly goodsRepository: Repository<GoodsEntity>,
+  ) {}
+
+  async create() {
     const targetFolder = './md-generates-files/';
 
-    for (let i = 1; i <= 100; i++) {
-      const path = targetFolder + i + '.md';
+    const goodsEntity = await this.goodsRepository.find({ isActive: true });
+
+    goodsEntity.forEach(value => {
+      const path = targetFolder + value.id + '.md';
       const content =
         mdTemplate1 +
-        i +
+        value.name +
         mdTemplate2 +
-        (i * 100 + i) +
+        value.price +
         mdTemplate3 +
-        i +
+        value.name +
         mdTemplate4;
 
       fs.writeFile(path, content, err => {
@@ -30,6 +40,6 @@ export class MdGeneratorService {
         }
         //file written successfully
       });
-    }
+    });
   }
 }

@@ -91,7 +91,7 @@ export default Vue.extend({
         .sortBy('priority', 'desc')
         .skip(this.goodsSkip)
         .limit(this.takeGoods)
-        .search('name', this.searchPattern)
+        .search(this.searchPattern)
         .fetch();
 
       goodsContent.forEach((goods1: any) => {

@@ -1,5 +1,5 @@
 <template>
-  <v-card :loading="loading" :to="`/goods/` + goodsId">
+  <v-card :loading="loading" height="300" :to="`/goods/` + goodsId">
     <template slot="progress">
       <v-progress-linear
         color="deep-purple"
