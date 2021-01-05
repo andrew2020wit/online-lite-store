@@ -39,3 +39,10 @@ export class OrderEntity {
     this.userNote = userNote;
   }
 }
+
+export class QueryEntityDto {
+  maxItemCount?: number;
+  createdOnLessThan?: Date;
+  pattern?: string;
+  entityType?: string;
+}

@@ -67,17 +67,21 @@ export class OrderService {
     return returnMessage;
   }
 
-  async getOrders0(userIdFromToken: string, queryOrdersDto: QueryEntityDto) {
+  async getOrders(userIdFromToken: string, queryOrdersDto: QueryEntityDto) {
+    const take1 = queryOrdersDto.maxItemCount || 100;
+    const createdOnLessThan1 = queryOrdersDto.createdOnLessThan || new Date();
+
     return await this.ordersRepository.find({
-      take: queryOrdersDto.maxItemCount,
+      take: take1,
       order: { createdOn: 'DESC' },
       where: {
-        createdOn: LessThan(queryOrdersDto.createdOnLessThan),
+        createdOn: LessThan(createdOnLessThan1),
+        userId: userIdFromToken,
       },
     });
   }
 
-  async getOrders(userIdFromToken: string, queryOrdersDto: QueryEntityDto) {
+  async getOrders2(userIdFromToken: string, queryOrdersDto: QueryEntityDto) {
     return await this.ordersRepository.find();
   }
 }
