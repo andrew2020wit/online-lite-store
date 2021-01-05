@@ -15,7 +15,7 @@ export class CartItem {
 }
 
 interface State {
-  cartItems: any;
+  cartItems: Record<string, any>;
   cartIsOpen: boolean;
   sum: number;
   items: number;
