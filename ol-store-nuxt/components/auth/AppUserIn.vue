@@ -9,6 +9,13 @@
       <v-list>
         <v-list-item>
           <v-list-item-title>
+            <v-btn color="primary" plain to="/orders"
+              >Orders</v-btn
+            ></v-list-item-title
+          >
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-title>
             <v-btn color="primary" plain to="/profile"
               >Profile</v-btn
             ></v-list-item-title

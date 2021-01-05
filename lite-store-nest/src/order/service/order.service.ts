@@ -67,7 +67,7 @@ export class OrderService {
     return returnMessage;
   }
 
-  async getOrders(userIdFromToken: string, queryOrdersDto: QueryEntityDto) {
+  async getOrders0(userIdFromToken: string, queryOrdersDto: QueryEntityDto) {
     return await this.ordersRepository.find({
       take: queryOrdersDto.maxItemCount,
       order: { createdOn: 'DESC' },
@@ -75,5 +75,9 @@ export class OrderService {
         createdOn: LessThan(queryOrdersDto.createdOnLessThan),
       },
     });
+  }
+
+  async getOrders(userIdFromToken: string, queryOrdersDto: QueryEntityDto) {
+    return await this.ordersRepository.find();
   }
 }
