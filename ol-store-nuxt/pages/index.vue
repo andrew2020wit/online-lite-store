@@ -7,7 +7,6 @@
             v-model.trim="searchPattern"
             type="search"
             autocomplete="off"
-            :rules="searchPatternRules"
             outlined
             label="searchPattern"
           ></v-text-field>
@@ -93,6 +92,8 @@ export default Vue.extend({
         .limit(this.takeGoods)
         .search(this.searchPattern)
         .fetch();
+
+      // console.log('goodsContent', goodsContent);
 
       goodsContent.forEach((goods1: any) => {
         const newGoodsExt1: GoodsExt = {

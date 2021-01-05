@@ -11,6 +11,7 @@
 <script lang="ts">
 import Vue from 'vue';
 export default Vue.extend({
+  middleware: 'auth',
   mounted() {
     this.$store.commit('cart/showCart');
   },
