@@ -1,4 +1,6 @@
 export const createUserEndPoint = 'http://localhost:3001/api/user/create-user';
+export const getUserProfileEndPoint =
+  'http://localhost:3001/api/auth/get-user-profile';
 // export const countOfFirstFetchGoods = 40;
 
 export const putOrderEndPoint = 'http://localhost:3001/api/order';

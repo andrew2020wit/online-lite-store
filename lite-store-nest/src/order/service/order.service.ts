@@ -80,8 +80,4 @@ export class OrderService {
       },
     });
   }
-
-  async getOrders2(userIdFromToken: string, queryOrdersDto: QueryEntityDto) {
-    return await this.ordersRepository.find();
-  }
 }

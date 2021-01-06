@@ -107,10 +107,11 @@ export default {
 
         await this.$axios
           .post(createUserEndPoint, {
-            login,
+            login: login,
+            phone: login,
             password: this.password,
             fullName: this.fullName,
-            defaultDeliverAddress: this.defaultDeliverAddressRules,
+            defaultDeliverAddress: this.defaultDeliverAddress,
             email: this.email,
           })
           .then((response) => {

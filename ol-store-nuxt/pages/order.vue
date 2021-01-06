@@ -31,7 +31,7 @@
 import Vue from 'vue';
 import { mapState } from 'vuex';
 import { CartItem } from '~/store/cart';
-import { putOrderEndPoint } from '~/data/const';
+import { getUserProfileEndPoint, putOrderEndPoint } from '~/data/const';
 import { OrderEntity, OrderItemEntity } from '~/data/order.class';
 
 export default Vue.extend({
@@ -41,10 +41,10 @@ export default Vue.extend({
       formValid: false,
       deliverAddress: '',
       deliverAddressRules: [
-        (v: string) => !!v || 'defaultDeliverAddress is required',
+        (v: string) => !!v || 'deliverAddress is required',
         (v: string) =>
           (v.length >= 5 && v.length <= 500) ||
-          'defaultDeliverAddress must be 5-500 characters',
+          'deliverAddress must be 5-500 characters',
       ],
       customerComment: '',
     };
@@ -52,7 +52,6 @@ export default Vue.extend({
   computed: mapState('cart', ['cartItems', 'cartIsOpen', 'sum', 'items']),
   methods: {
     orderSubmit() {
-      const putOrderEndPoint1 = putOrderEndPoint;
       if (this.sum == 0) {
         alert('Cart is empty!');
         return;
@@ -75,7 +74,7 @@ export default Vue.extend({
         this.customerComment
       );
       // console.log('orderEntity', orderEntity);
-      this.$axios.$put(putOrderEndPoint1, orderEntity).then((res) => {
+      this.$axios.$put(putOrderEndPoint, orderEntity).then((res) => {
         console.log(res);
         this.$store.commit('cart/clearCart');
         this.$router.push('/orders');
@@ -84,6 +83,11 @@ export default Vue.extend({
   },
   mounted() {
     this.$store.commit('cart/showCart');
+    this.$axios.$get(getUserProfileEndPoint).then((userProfile) => {
+      console.log('userProfile', userProfile);
+
+      this.deliverAddress = userProfile.defaultDeliverAddress;
+    });
   },
 });
 </script>
