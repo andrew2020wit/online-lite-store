@@ -10,6 +10,7 @@ import { JWTokenDTO } from './dto/token-object.dto';
 
 export class UserProfile {
   id: string;
+  login: string;
   fullName: string;
   role: string;
   defaultDeliverAddress: string;
@@ -77,6 +78,7 @@ export class AuthService {
 
     const userProfile: UserProfile = {
       id: user.id,
+      login: user.login,
       fullName: user.fullName,
       role: user.role,
       defaultDeliverAddress: user.defaultDeliverAddress,

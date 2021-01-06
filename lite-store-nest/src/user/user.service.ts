@@ -123,7 +123,6 @@ export class UserService {
     delete entity.isActive;
     delete entity.role;
     delete entity.password;
-    delete entity.login;
 
     const oldEntity = await this.repository.findOne(userIdFromToken);
 
