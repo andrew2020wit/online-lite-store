@@ -30,7 +30,9 @@ export class AuthService {
     const areEqual = await bcrypt.compare(password1, user.password);
 
     if (!areEqual) {
-      console.log('bcrypt.compare(password1, user.password);');
+      console.log('wrong bcrypt.compare(password1, user.password);');
+      console.log('userId', user.id);
+
       return null;
     }
     return {

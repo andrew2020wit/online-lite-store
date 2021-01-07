@@ -49,6 +49,14 @@
           <v-card-text>
             <v-form v-model="formPassWordValid" @submit.prevent="editPassword">
               <v-text-field
+                v-model="currentPassword"
+                :rules="currentPasswordRules"
+                label="currentPassword"
+                type="password"
+                required
+              ></v-text-field>
+
+              <v-text-field
                 v-model="password"
                 :rules="passwordRules"
                 label="Password"
@@ -80,8 +88,12 @@
 
 <script>
 import { patternPhoneNumber } from '@/components/phone-number-utils';
-import { editUserEndPoint } from '@/data/const';
-import { getUserProfileEndPoint, putOrderEndPoint } from '~/data/const';
+import {
+  getUserProfileEndPoint,
+  editUserEndPoint,
+  putOrderEndPoint,
+  changeUserPasswordEndPoint,
+} from '~/data/const';
 
 export default {
   data: () => ({
@@ -100,6 +112,9 @@ export default {
         (v.length >= 2 && v.length <= 30) || 'Password must be 2-30 characters',
     ],
     password2: '',
+    currentPassword: '',
+    currentPasswordRules: [(v) => !!v || 'currentPassword'],
+
     fullName: '',
     fullNameRules: [
       (v) => !!v || 'fullName is required',
@@ -147,8 +162,9 @@ export default {
     async editPassword() {
       try {
         await this.$axios
-          .post('temp', {
-            password: this.password,
+          .post(changeUserPasswordEndPoint, {
+            currentPW: this.currentPassword,
+            newPW: this.password,
           })
           .then((response) => {
             console.log(response);

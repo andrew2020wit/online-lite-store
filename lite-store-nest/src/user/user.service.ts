@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
 import { InjectRepository } from '@nestjs/typeorm';
+import * as bcrypt from 'bcrypt';
 import { QueryEntityDto } from 'src/global-interface/query-entity.dto';
 import { StatusMessageDto } from 'src/global-interface/status-message.dto';
 import { FindOperator, LessThan, Like, Repository } from 'typeorm';
@@ -21,6 +22,11 @@ export class AdminUserQueryDTO {
   role?: UserRole;
   @ApiProperty()
   isActive?: boolean;
+}
+
+export class ChangePasswordDTO {
+  currentPW: string;
+  newPW: string;
 }
 
 @Injectable()
@@ -132,6 +138,55 @@ export class UserService {
     statusMessage.ok = true;
     statusMessage.resultId = resultEntity.id;
 
+    return statusMessage;
+  }
+
+  async changePassword(
+    changePasswordDTO: ChangePasswordDTO,
+    userIdFromToken: string,
+  ): Promise<StatusMessageDto> {
+    const statusMessage = new StatusMessageDto('UserService.changePassword');
+    console.log('changePasswordDTO', changePasswordDTO);
+
+    if (!changePasswordDTO.newPW) {
+      statusMessage.message = 'new password is false';
+      return statusMessage;
+    }
+
+    const user = await this.repository.findOne(userIdFromToken, {
+      select: ['password'],
+    });
+
+    console.log('user', user);
+
+    const areEqual = await bcrypt.compare(
+      changePasswordDTO.currentPW,
+      user.password,
+    );
+
+    if (!areEqual) {
+      statusMessage.message = 'currentPassword incorrect';
+      return statusMessage;
+    }
+
+    const pw2 = await getPassWordHash(changePasswordDTO.newPW);
+
+    await this.repository.update(userIdFromToken, {
+      password: pw2,
+    });
+
+    statusMessage.ok = true;
+
+    return statusMessage;
+  }
+
+  async setDefaultPW(userId) {
+    const statusMessage = new StatusMessageDto('UserService.setDefaultPW');
+    const pw2 = await getPassWordHash('12');
+    await this.repository.update(userId, {
+      password: pw2,
+    });
+    statusMessage.ok = true;
     return statusMessage;
   }
 

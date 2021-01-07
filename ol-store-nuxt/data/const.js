@@ -1,5 +1,7 @@
 export const createUserEndPoint = 'http://localhost:3001/api/user/create-user';
 export const editUserEndPoint = 'http://localhost:3001/api/user/edit-user';
+export const changeUserPasswordEndPoint =
+  'http://localhost:3001/api/user/change-password';
 export const getUserProfileEndPoint =
   'http://localhost:3001/api/user/get-profile';
 

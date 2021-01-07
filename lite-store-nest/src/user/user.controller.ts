@@ -14,7 +14,11 @@ import { AdminJwtAuthGuard } from '../auth/guards/admin-jwt-auth.guard';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RequestWithJwtUserExtDto } from '../auth/interfaces/request-with-user-ext.interface';
 import { UserEntity, UserProfile, UserRole } from './user.entity';
-import { AdminUserQueryDTO, UserService } from './user.service';
+import {
+  AdminUserQueryDTO,
+  ChangePasswordDTO,
+  UserService,
+} from './user.service';
 
 @ApiTags('user')
 @Controller('api/user')
@@ -68,6 +72,23 @@ export class UserController {
   ): Promise<StatusMessageDto> {
     return await this.entityService.edit(user, req.user.sub);
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('change-password')
+  async changePassword(
+    @Request() req: RequestWithJwtUserExtDto,
+    @Body() changePasswordDTO: ChangePasswordDTO,
+  ): Promise<StatusMessageDto> {
+    return await this.entityService.changePassword(
+      changePasswordDTO,
+      req.user.sub,
+    );
+  }
+
+  // @Get('testing-set-def-pw/:id')
+  // async setDefaultPW(@Param('id') id: string): Promise<StatusMessageDto> {
+  //   return await this.entityService.setDefaultPW(id);
+  // }
 
   @UseGuards(JwtAuthGuard)
   @Get('get-profile')
