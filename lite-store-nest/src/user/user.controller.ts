@@ -13,7 +13,7 @@ import { StatusMessageDto } from 'src/global-interface/status-message.dto';
 import { AdminJwtAuthGuard } from '../auth/guards/admin-jwt-auth.guard';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RequestWithJwtUserExtDto } from '../auth/interfaces/request-with-user-ext.interface';
-import { UserEntity, UserRole } from './user.entity';
+import { UserEntity, UserProfile, UserRole } from './user.entity';
 import { AdminUserQueryDTO, UserService } from './user.service';
 
 @ApiTags('user')
@@ -67,5 +67,15 @@ export class UserController {
     @Body() user: UserEntity,
   ): Promise<StatusMessageDto> {
     return await this.entityService.edit(user, req.user.sub);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('get-profile')
+  async getUserProfile(
+    @Request() req: RequestWithJwtUserExtDto,
+  ): Promise<UserProfile> {
+    const resp = await this.entityService.getUserProfile(req.user.sub);
+    // console.log('resp ', resp);
+    return resp;
   }
 }

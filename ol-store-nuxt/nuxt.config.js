@@ -88,7 +88,7 @@ export default {
           },
           logout: false,
           user: {
-            url: 'http://localhost:3001/api/auth/get-user-profile',
+            url: 'http://localhost:3001/api/user/get-profile',
             method: 'get',
           },
         },

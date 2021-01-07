@@ -8,16 +8,6 @@ import { JwtPayloadExtDto } from './dto/jwt-payload-ext.dto';
 import { JwtPayloadDto } from './dto/jwt-payload.dto';
 import { JWTokenDTO } from './dto/token-object.dto';
 
-export class UserProfile {
-  id: string;
-  login: string;
-  fullName: string;
-  role: string;
-  defaultDeliverAddress: string;
-  phone: string;
-  email: string;
-}
-
 @Injectable()
 export class AuthService {
   constructor(
@@ -71,21 +61,5 @@ export class AuthService {
         fullName: jwtPayloadExtDto.fullName,
       }),
     };
-  }
-
-  async getUserProfile(userId: string): Promise<UserProfile> {
-    const user = await this.userRepository.findOne(userId);
-
-    const userProfile: UserProfile = {
-      id: user.id,
-      login: user.login,
-      fullName: user.fullName,
-      role: user.role,
-      defaultDeliverAddress: user.defaultDeliverAddress,
-      phone: user.phone,
-      email: user.email,
-    };
-
-    return userProfile;
   }
 }

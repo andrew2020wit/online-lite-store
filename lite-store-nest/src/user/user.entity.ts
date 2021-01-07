@@ -19,6 +19,16 @@ export enum UserGender {
   notIndicated = '',
 }
 
+export class UserProfile {
+  id: string;
+  login: string;
+  fullName: string;
+  role: string;
+  defaultDeliverAddress: string;
+  phone: string;
+  email: string;
+}
+
 @Entity()
 export class UserEntity {
   @PrimaryGeneratedColumn('uuid')

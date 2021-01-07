@@ -5,7 +5,7 @@ import { QueryEntityDto } from 'src/global-interface/query-entity.dto';
 import { StatusMessageDto } from 'src/global-interface/status-message.dto';
 import { FindOperator, LessThan, Like, Repository } from 'typeorm';
 import { getPassWordHash } from '../auth/utils/getPassWordHash';
-import { UserEntity, UserRole } from './user.entity';
+import { UserEntity, UserProfile, UserRole } from './user.entity';
 
 class WereObj {
   name?: FindOperator<string>;
@@ -133,5 +133,21 @@ export class UserService {
     statusMessage.resultId = resultEntity.id;
 
     return statusMessage;
+  }
+
+  async getUserProfile(userId: string): Promise<UserProfile> {
+    const user = await this.repository.findOne(userId);
+
+    const userProfile: UserProfile = {
+      id: user.id,
+      login: user.login,
+      fullName: user.fullName,
+      role: user.role,
+      defaultDeliverAddress: user.defaultDeliverAddress,
+      phone: user.phone,
+      email: user.email,
+    };
+
+    return userProfile;
   }
 }
