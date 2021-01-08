@@ -9,6 +9,7 @@
             autocomplete="off"
             outlined
             label="searchPattern"
+            @keydown.enter="searchGoods"
           ></v-text-field>
         </v-col>
         <v-col cols="12" xl="2" lg="3" md="4" sm="6"
