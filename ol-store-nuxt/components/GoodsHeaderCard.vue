@@ -8,7 +8,7 @@
       ></v-progress-linear>
     </template>
 
-    <v-img height="200" src="/images/goods/small-without-photo.jpeg"></v-img>
+    <v-img height="200" :src="imgSrc1"></v-img>
 
     <v-card-title>
       <div class="block1">${{ price }}: {{ name }}</div></v-card-title
@@ -25,13 +25,22 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { goodsImagesDir, srcSmallWithoutPhoto } from '~/data/const';
 export default Vue.extend({
   props: {
     goodsId: { type: String, required: true },
     name: { type: String, required: true },
     price: { type: Number, default: null },
+    imgSrc: { type: String, default: null },
   },
-  computed: {},
+  computed: {
+    imgSrc1() {
+      if (!this.imgSrc) {
+        return srcSmallWithoutPhoto;
+      }
+      return goodsImagesDir + this.goodsId + '/' + this.imgSrc;
+    },
+  },
   data() {
     return {
       loading: false,

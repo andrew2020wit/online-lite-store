@@ -39,6 +39,7 @@
             :name="goods1.name"
             :goodsId="goods1.id"
             :price="goods1.price"
+            :imgSrc="goods1.srcSmallPhoto"
           />
         </v-col>
       </v-row>
@@ -85,7 +86,7 @@ export default Vue.extend({
         whereQuery.category = this.selectedCategory;
       }
       const goodsContent = await this.$content('goods')
-        .only(['name', 'price', 'slug'])
+        .only(['name', 'price', 'slug', 'images'])
         .where(whereQuery)
         .sortBy('priority', 'desc')
         .skip(this.goodsSkip)
@@ -101,6 +102,15 @@ export default Vue.extend({
           name: goods1.name,
           price: goods1.price,
         };
+
+        if (goods1?.images) {
+          newGoodsExt1.srcSmallPhoto = goods1?.images[0];
+          if (!newGoodsExt1.srcSmallPhoto) {
+            newGoodsExt1.srcSmallPhoto = '';
+          }
+        } else {
+          newGoodsExt1.srcSmallPhoto = '';
+        }
         this.goodsArr.push(newGoodsExt1);
       });
 

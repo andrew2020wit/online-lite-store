@@ -28,6 +28,8 @@ export default Vue.extend({
   components: {},
   async asyncData({ $content, params }) {
     const goods = await $content('goods', params.slug).fetch();
+    console.log('goods', goods);
+
     return { goods };
   },
   data() {

@@ -16,4 +16,5 @@ export class GoodsExt {
   priority?: number;
   price?: number;
   maxCount?: number;
+  srcSmallPhoto?: string;
 }
