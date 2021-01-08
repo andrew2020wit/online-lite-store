@@ -8,10 +8,7 @@
       ></v-progress-linear>
     </template>
 
-    <v-img
-      height="200"
-      src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
-    ></v-img>
+    <v-img height="200" src="/images/goods/small-without-photo.jpeg"></v-img>
 
     <v-card-title>
       <div class="block1">${{ price }}: {{ name }}</div></v-card-title
