@@ -9,7 +9,7 @@ import { getPassWordHash } from '../auth/utils/getPassWordHash';
 import { UserEntity, UserProfile, UserRole } from './user.entity';
 
 class WereObj {
-  name?: FindOperator<string>;
+  fullName?: FindOperator<string>;
   isActive?: boolean;
   createdOn?: FindOperator<Date>;
   articleType?: string;
@@ -49,7 +49,7 @@ export class UserService {
       whereObj.createdOn = LessThan(queryDto.createdOnLessThan);
     }
     if (queryDto.pattern) {
-      whereObj.name = Like(`%${queryDto.pattern}%`);
+      whereObj.fullName = Like(`%${queryDto.pattern}%`);
     }
 
     return this.repository.find({

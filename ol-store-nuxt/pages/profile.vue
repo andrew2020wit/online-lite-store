@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12" md="3">
+      <v-col cols="12" xl="2" lg="3" md="4" sm="6">
         <v-card>
           <v-card-title> Profile </v-card-title>
           <v-card-text>
@@ -43,7 +43,7 @@
         </v-card>
       </v-col>
 
-      <v-col cols="12" md="3">
+      <v-col cols="12" xl="2" lg="3" md="4" sm="6">
         <v-card>
           <v-card-title> ChangePassword </v-card-title>
           <v-card-text>
@@ -81,6 +81,31 @@
             </v-form>
           </v-card-text></v-card
         >
+      </v-col>
+
+      <v-col cols="12" xl="2" lg="3" md="4" sm="6" v-if="(userRole = `admin`)">
+        <v-card>
+          <v-card-title> AdminsFunction </v-card-title>
+          <v-card-text>
+            <ul>
+              <li><v-btn color="primary" text to="/users">Users</v-btn></li>
+            </ul>
+          </v-card-text></v-card
+        >
+      </v-col>
+
+      <v-col
+        cols="12"
+        xl="2"
+        lg="3"
+        md="4"
+        sm="6"
+        v-if="(userRole = `admin` || `manager`)"
+      >
+        <v-card>
+          <v-card-title> Managers Function </v-card-title>
+          <v-card-text> </v-card-text
+        ></v-card>
       </v-col>
     </v-row>
   </v-container>
@@ -137,6 +162,7 @@ export default {
         'defaultDeliverAddress must be 5-500 characters',
     ],
     userId: '',
+    userRole: '',
   }),
   methods: {
     async editProfile() {
@@ -194,6 +220,7 @@ export default {
       this.fullName = userProfile.fullName;
       this.email = userProfile.email;
       this.userId = userProfile.id;
+      this.userRole = userProfile.role;
     });
   },
 };

@@ -17,9 +17,9 @@ export class TestController {
   @ApiTags('testing')
   @Get('regenerate-test-data')
   async init(): Promise<StatusMessageDto> {
-    await this.testInitOrdersService.clearTables();
+    //await this.testInitOrdersService.clearTables();
     await this.initTestDataService.initData();
-    await this.testInitGoodsService.goodsGenerator();
+    //await this.testInitGoodsService.goodsGenerator();
 
     return { ok: true, source: 'regenerate-test-data', message: 'Done' };
   }

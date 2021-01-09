@@ -14,7 +14,7 @@ BackAPI: NestJS, based on https://github.com/andrew2020wit/online-store
 ## NuxtJS: SSR
 
 1. Generate static page "AllGoods" (link from HomePage), for SEO, static goods-card-pages
-2. (todo) Images-Content, static files.
+2. Images-Content, static files.
 
 ## VueJS
 
@@ -30,8 +30,8 @@ BackAPI: NestJS, based on https://github.com/andrew2020wit/online-store
 
 ## Admin-function (todo)
 
-1. Disactivate user
-2. price-editor
+1. UserList, Disactivate user. Change user role (manager)
+1. price-editor
 
 ## External API, import-export ? (todo)
 

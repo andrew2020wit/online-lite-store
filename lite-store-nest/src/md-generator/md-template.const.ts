@@ -5,6 +5,7 @@ name: `;
 export const mdTemplate2 = `
 priority: 1
 category: general
+images: []
 price: `;
 
 export const mdTemplate3 = `
