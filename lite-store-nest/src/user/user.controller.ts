@@ -31,14 +31,14 @@ export class UserController {
     @Param('id') id: string,
     @Request() req: RequestWithJwtUserExtDto,
   ): Promise<UserEntity> {
-    console.log('id', id);
+    //console.log('id', id);
 
     const user = req.user;
     if (user.sub !== id && user.role !== UserRole.admin) {
       return null;
     }
     const result = await this.entityService.getById(id);
-    console.log('result', result);
+    //console.log('result', result);
 
     return result;
   }
@@ -59,7 +59,7 @@ export class UserController {
 
   @Post('create-user')
   async register(@Body() user: UserEntity): Promise<StatusMessageDto> {
-    console.log('user: ', user);
+    //console.log('user: ', user);
 
     return await this.entityService.create(user);
   }

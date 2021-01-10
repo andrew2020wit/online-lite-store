@@ -1,16 +1,19 @@
 // Users Endpoint
 
-export const createUserEndPoint = 'http://localhost:3001/api/user/create-user';
-export const editUserEndPoint = 'http://localhost:3001/api/user/edit-user';
+export const baseApiEndPoint = 'http://localhost:3001/api';
+
+export const createUserEndPoint = baseApiEndPoint + '/user/create-user';
+export const editUserEndPoint = baseApiEndPoint + '/user/edit-user';
 export const changeUserPasswordEndPoint =
-  'http://localhost:3001/api/user/change-password';
-export const getUserProfileEndPoint =
-  'http://localhost:3001/api/user/get-profile';
+  baseApiEndPoint + '/user/change-password';
+export const getUserProfileEndPoint = baseApiEndPoint + '/user/get-profile';
 
-export const queryUsersEndPoint = 'http://localhost:3001/api/user/query-users';
+export const queryUsersEndPoint = baseApiEndPoint + '/user/query-users';
 
-export const putOrderEndPoint = 'http://localhost:3001/api/order';
-export const getOrdersEndPoint = 'http://localhost:3001/api/order/query';
+export const getUserEntityEP = baseApiEndPoint + '/user/get-user-entity';
+
+export const putOrderEndPoint = baseApiEndPoint + '/order';
+export const getOrdersEndPoint = baseApiEndPoint + '/order/query';
 
 export const goodsCategories = ['', 'all', 'cat1', 'cat2', 'general'];
 

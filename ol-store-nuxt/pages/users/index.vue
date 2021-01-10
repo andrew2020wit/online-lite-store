@@ -30,7 +30,11 @@
           <tbody>
             <tr v-for="user in entities" :key="user.id">
               <td>{{ user.fullName }}</td>
-              <td>{{ user.id }}</td>
+              <td>
+                <router-link :to="`/users/` + user.id">
+                  {{ user.id }}
+                </router-link>
+              </td>
               <td>{{ user.role }}</td>
               <td>{{ user.isActive }}</td>
             </tr>

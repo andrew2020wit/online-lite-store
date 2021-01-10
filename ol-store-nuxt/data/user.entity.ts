@@ -11,13 +11,13 @@ export enum UserGender {
 }
 
 export class UserProfile {
-  id: string;
-  login: string;
-  fullName: string;
-  role: string;
-  defaultDeliverAddress: string;
-  phone: string;
-  email: string;
+  id?: string;
+  login?: string;
+  fullName?: string;
+  role?: string;
+  defaultDeliverAddress?: string;
+  phone?: string;
+  email?: string;
 }
 
 export class UserEntity {
