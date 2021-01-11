@@ -22,7 +22,6 @@ td {
 
 <script lang="ts">
 import Vue from 'vue';
-import { priceData } from '~/data/price';
 import { GoodsExt } from '~/data/price.class';
 export default Vue.extend({
   components: {},
@@ -41,14 +40,6 @@ export default Vue.extend({
         name: goods1.name,
         price: goods1.price,
       };
-
-      const priceObj = priceData.find((value) => {
-        return goods1.slug == value.id;
-      });
-
-      if (priceObj?.price) {
-        newGoodsExt1.price = priceObj.price;
-      }
 
       goodsExt.push(newGoodsExt1);
     });
