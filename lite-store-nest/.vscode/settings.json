@@ -1,0 +1,31 @@
+{
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#440000",
+        "activityBar.activeBorder": "#006000",
+        "activityBar.background": "#440000",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#006000",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "statusBar.background": "#110000",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#440000",
+        "titleBar.activeBackground": "#110000",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveBackground": "#11000099",
+        "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#110000",
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "askForPassword": true,
+            "driver": "PostgreSQL",
+            "name": "online-store",
+            "database": "online-store-db",
+            "username": "postgres"
+        }
+    ]
+}

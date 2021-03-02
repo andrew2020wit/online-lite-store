@@ -38,3 +38,7 @@ BackAPI: NestJS, based on https://github.com/andrew2020wit/online-store
 3. Init markdown-file generator for NuxtContent
 
 _Author_: https://github.com/andrew2020wit
+
+## License
+
+It is MIT licensed.
